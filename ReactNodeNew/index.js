@@ -50,8 +50,8 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/products/add',(req,res)=>{
-    const{ name, price} = req.query;
-    const INSERT_PRODUCTS_QUERY = `INSERT INTO products (name, price) VALUES ('${name}',${price})`;
+    const{ name, price, image} = req.query;
+    const INSERT_PRODUCTS_QUERY = `INSERT INTO products (name, price, image) VALUES ('${name}',${price},'${image}')`;
     pool.query(INSERT_PRODUCTS_QUERY,(err,results)=>{
         if(err){
             return res.send(err);
