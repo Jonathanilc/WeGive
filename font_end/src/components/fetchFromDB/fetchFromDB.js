@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import img1 from '../../img/haha.png';
-import {Grid,Button,Image} from 'semantic-ui-react'
+import {Grid,Button,Image,Label,Table} from 'semantic-ui-react'
 import './fetchFromDB.css';
 
 
@@ -58,32 +58,32 @@ class FetchFromDB extends Component {
 
 
     renderProduct = ({product_id,name,price})=>(
-        <tbody key = {product_id}>
-          <tr>
-            <td><Image className = "icon" src={img1}/></td>
-            <td>{product_id}</td>
-            <td>{name}</td>
-            <td>{price}</td>
-            <td><Button onClick={()=>this.deleteProductHandler(product_id)}>Delete</Button></td>
-          </tr>
-        </tbody>
+        <Table.Body key = {product_id}>
+          <Table.Row>
+            <Table.Cell><Image className = "icon" src={img1}/></Table.Cell>
+            <Table.Cell>{product_id}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{price}</Table.Cell>
+            <Table.Cell><Button onClick={()=>this.deleteProductHandler(product_id)}>Delete</Button></Table.Cell>
+          </Table.Row>
+        </Table.Body>
     );
 
     render(){
         const {products,product} = this.state;
         const mapingRows = products.map(this.renderProduct);
-        const productTable = <table className='ui celled table'>
-        <tbody>
-            <tr>
-                <th></th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Delete</th>
-            </tr>
-        </tbody>
+        const productTable = <Table className='ui celled table'>
+        <Table.Body>
+            <Table.Row>
+                <Table.HeaderCell><Label ribbon>Image</Label></Table.HeaderCell>
+                <Table.HeaderCell><Label ribbon>ID</Label></Table.HeaderCell>
+                <Table.HeaderCell><Label ribbon>Name</Label></Table.HeaderCell>
+                <Table.HeaderCell><Label ribbon>Price</Label></Table.HeaderCell>
+                <Table.HeaderCell><Label ribbon>Delete</Label></Table.HeaderCell>
+            </Table.Row>
+        </Table.Body>
         {mapingRows}
-        </table>
+        </Table>
     return(
         <Grid celled='internally' >
 

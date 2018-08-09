@@ -3,8 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 
 import '../node_modules/react-bootstrap/dist/react-bootstrap';
- 
-import FetchFromDB from '../src/components/fetchFromDB/fetchFromDB'
+
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+  
+import FetchFromDB from '../src/components/fetchFromDB/fetchFromDB';
+import DisplayFromDB from '../src/components/displayFromDB/displayFromDB';
 
 
 class App extends Component {
@@ -18,14 +21,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+        <div className="App">
+          <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1> 
         </header>
-        <FetchFromDB/>
-      </div>
-    );
+        
+      <BrowserRouter>
+        <Switch>
+          <Route path = '/' exact component = {DisplayFromDB} />
+          <Route path = '/add' component = {FetchFromDB} />
+        </Switch>
+
+        
+        
+      </BrowserRouter>
+      
+    
+    </div>
+    )
   }
 }
 
